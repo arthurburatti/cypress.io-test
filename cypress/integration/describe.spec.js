@@ -11,4 +11,7 @@ describe('Grupo de teste', () => {
     it('Teste externo', () => {
 
     })  
+    it('Teste externo', () => {
+
+    }) 
 })
