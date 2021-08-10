@@ -25,5 +25,4 @@ describe('Espera', () => {
             .should('exist')
             .type('funciona')
     })
-
 })
