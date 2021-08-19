@@ -12,4 +12,11 @@ describe('elementos basicos', () => {
     it('...', () => {
        
     })
+
+    it('usando xpath', () => {
+        cy.xpath('//input[contains(@onclick, \'Francisco\')]')   
+        cy.get()    
+        cy.xpath('//table[@id=\'tabelaUsuarios\']//td[contains(., \'Francisco\')]/following-sibling::td/input')       
+        cy.xpath('//table[@id=\'tabelaUsuarios\']//td[contains(., \'Francisco\')]/..//input')     
+    })
 })
