@@ -1,30 +1,32 @@
 /// <reference types="cypress" />
 
 import loc from '../../support/locators'
+import '../../support/commandsContas'
 
 describe('Funcional', () => {
     before(() => {
-        cy.visit('https://barrigareact.wcaquino.me')
-        cy.get(loc.LOGIN.USER).type('arthur@teste.com.br')
-        cy.get(loc.LOGIN.PASSWORD).type('123456')
-        cy.get(loc.LOGIN.BTN_LOGIN).click()
-        cy.get(loc.MESSAGE).should('contain', 'Bem vindo')
-    })
+        cy.login('arthur@teste.com.br', '123456')
+        cy.resetApp()
+        })
 
     it('Inserir uma conta', () => {
-        cy.get(loc.MENU.SETTINGS).click()
-        cy.get(loc.MENU.CONTAS).click()
-        cy.get(loc.CONTAS.NOME).type('Conta de Teste')
-        cy.get(loc.CONTAS.BTN_SALVAR).click()
+        cy.acessarMenuConta()
+        cy.inserirConta('Conta de Teste')
         cy.get(loc.MESSAGE).should('contain', 'Conta inserida com sucesso')
     })
 
     it('Alterar uma conta', () => {
-        cy.get(loc.MENU.SETTINGS).click()
-        cy.get(loc.MENU.CONTAS).click()
-        cy.xpath(XP_BNT_ALTERAR).click()
+        cy.acessarMenuConta()
+        cy.xpath(loc.CONTAS.XP_BNT_ALTERAR).click()
         cy.get(loc.CONTAS.NOME).clear().type('Conta alterada')
         cy.get(loc.CONTAS.BTN_SALVAR).click()
         cy.get(loc.MESSAGE).should('contain', 'Conta atualizada com sucesso')
+    })
+
+    it('Não deve criar uma conta com mesmo nome', () => {
+        cy.acessarMenuConta()
+        cy.get(loc.CONTAS.NOME).clear().type('Conta alterada')
+        cy.get(loc.CONTAS.BTN_SALVAR).click()
+        cy.get(loc.MESSAGE).should('contain', 'status code 400')
     })
 })
