@@ -35,7 +35,6 @@ describe.only('Popup links', () => {
             const href = $a.prop('href')
             cy.visit(href)
             cy.get('#tfield').type('funciona')
-            
         })
     })
 

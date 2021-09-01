@@ -26,8 +26,8 @@ describe('elementos basicos', () => {
 
     it.only('Futuro', () => {
         cy.get('#buttonTimePassed').click()
-        cy.get('#resultado > span').should('contain', '16297')
-        cy.get('#resultado > span').invoke('text').should('gt', 1334082230000)
+        cy.get('#resultado > span').should('contain', '1630')
+        cy.get('#resultado > span').invoke('text').should('gt', 1630415332343)
 
         cy.clock()
         cy.get('#buttonTimePassed').click()
